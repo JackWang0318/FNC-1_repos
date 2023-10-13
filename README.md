@@ -10,7 +10,16 @@ A headline and a body text - either from the same news article or from two diffe
 
 ## Output
 Classify the stance of the body text relative to the claim made in the headline into one of four categories:
+
 Agrees: The body text agrees with the headline.
+
 Disagrees: The body text disagrees with the headline.
+
 Discusses: The body text discuss the same topic as the headline, but does not take a position
+
 Unrelated: The body text discusses a different topic than the headline
+
+## Acknowledgements
+1. [Team SOLAT IN THE SWEN](https://github.com/Cisco-Talos/fnc-1)
+2. [Team UCL](https://github.com/uclnlp/fakenewschallenge)
+3. [Team athene](https://github.com/hanselowski/athene_system)
