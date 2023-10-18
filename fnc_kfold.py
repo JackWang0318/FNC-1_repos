@@ -9,9 +9,15 @@ from utils.generate_test_splits import kfold_split, get_stances_for_folds
 from utils.score import report_score, LABELS, score_submission
 
 from utils.system import parse_params, check_version
+import nltk
 
 
 def generate_features(stances,dataset,name):
+    '''
+    这个函数根据输入的文本和数据集，生成用于机器学习模型的特征矩阵和标签。
+    特征包括词重叠特征、反驳特征、极性特征、手工特征等。
+    函数的输出是特征矩阵 X 和标签向量 y。
+    '''
     h, b, y = [],[],[]
 
     for stance in stances:
@@ -28,6 +34,10 @@ def generate_features(stances,dataset,name):
     return X,y
 
 if __name__ == "__main__":
+    #download nltk packages 
+    nltk.download('punkt')
+    nltk.download('wordnet')
+
     check_version()
     parse_params()
 
@@ -35,6 +45,19 @@ if __name__ == "__main__":
     d = DataSet()
     folds,hold_out = kfold_split(d,n_folds=10)
     fold_stances, hold_out_stances = get_stances_for_folds(d,folds,hold_out)
+
+    '''
+    将数据集分成多个"fold"或"折叠"的目的是为了进行交叉验证(Cross-Validation)。
+    交叉验证是一种评估模型性能和泛化能力的技术，它有助于解决以下问题：
+    模型性能评估：通过将数据集划分成多个子集（折叠），可以多次训练和测试模型，从而获得对模型性能的更稳定和全面的评估。
+    减少过拟合风险：交叉验证有助于降低模型过拟合的风险。如果只使用单一的训练集和测试集，模型可能过度适应特定的训练数据，无法泛化到未见过的数据。
+    超参数调优：通过交叉验证，可以比较不同参数配置下模型的性能，并选择最佳的参数设置，以提高模型的泛化能力。
+    数据利用率：有效地利用了所有可用数据，因为每个子集都会作为训练集和测试集的一部分，确保数据充分参与模型评估。
+    每个折叠都可以轮流作为测试集, 而其他K-1个折叠作为训练集, 以便多次训练和测试模型。这就是K折交叉验证(K-Fold Cross-Validation)的基本思想。
+    通过交叉验证，可以获得多个性能评估的结果，通常是均值或其他统计指标，以更好地了解模型的性能。
+    这有助于准确评估模型的性能，发现模型的弱点，并提高模型的预测能力。
+    '''
+
 
     # Load the competition dataset
     competition_dataset = DataSet("competition_test")

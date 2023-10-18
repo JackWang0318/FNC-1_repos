@@ -1,17 +1,18 @@
 #Adapted from https://github.com/FakeNewsChallenge/fnc-1/blob/master/scorer.py
 #Original credit - @bgalbraith
 
+# 本次FNC-1的label 
 LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
 LABELS_RELATED = ['unrelated','related']
 RELATED = LABELS[0:3]
 
 def score_submission(gold_labels, test_labels):
     score = 0.0
-    cm = [[0, 0, 0, 0],
+    cm = [[0, 0, 0, 0], #confusion matrix
           [0, 0, 0, 0],
           [0, 0, 0, 0],
           [0, 0, 0, 0]]
-
+    # 根据评分规则计算score
     for i, (g, t) in enumerate(zip(gold_labels, test_labels)):
         g_stance, t_stance = g, t
         if g_stance == t_stance:
