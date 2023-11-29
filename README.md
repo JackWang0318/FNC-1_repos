@@ -19,6 +19,9 @@ Discusses: The body text discuss the same topic as the headline, but does not ta
 
 Unrelated: The body text discusses a different topic than the headline
 
+![image](https://github.com/JackWang0318/FNC-1_repos/assets/99715727/0a07d2b7-8def-431f-8cbb-0b63038d1ffe)
+
+
 ## Acknowledgements
 1. [Team SOLAT IN THE SWEN](https://github.com/Cisco-Talos/fnc-1)
 2. [Team UCL](https://github.com/uclnlp/fakenewschallenge)
